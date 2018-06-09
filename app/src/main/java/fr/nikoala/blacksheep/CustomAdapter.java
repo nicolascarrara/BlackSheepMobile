@@ -1,6 +1,7 @@
 package fr.nikoala.blacksheep;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,8 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 import com.bumptech.glide.Glide;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -57,7 +61,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, my_data.get(getAdapterPosition()).getSynopsys() ,Toast.LENGTH_SHORT).show();
+                    Intent intent;
+                    intent = new Intent(context , MovieDetailActivity.class);
+                    intent.putExtra("MOVIE_DETAILS", (Serializable) my_data.get(getAdapterPosition()));
+                    context.startActivity(intent);
+                  //  Toast.makeText(context, my_data.get(getAdapterPosition()).getSynopsys() ,Toast.LENGTH_SHORT).show();
                 }
             });
 

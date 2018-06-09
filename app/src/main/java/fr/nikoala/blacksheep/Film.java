@@ -1,10 +1,12 @@
 package fr.nikoala.blacksheep;
 
+import java.io.Serializable;
+
 /**
  * Created by nicolascarrara on 12/05/2018.
  */
 
-public class Film {
+public class Film{
 
     private int id;
     private String titre;

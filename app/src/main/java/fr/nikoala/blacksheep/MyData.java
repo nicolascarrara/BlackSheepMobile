@@ -1,10 +1,12 @@
 package fr.nikoala.blacksheep;
 
+import java.io.Serializable;
+
 /**
  * Created by nicolascarrara on 13/05/2018.
  */
 
-public class MyData {
+public class MyData  implements Serializable {
     private int id;
     private String titre;
     private String synopsys;
