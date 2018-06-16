@@ -14,16 +14,24 @@ public class Film{
     private float note;
     private String date_sortie;
     private String image;
+    private int tosee;
+    private int seen;
 
-    public Film(int id,String titre,String synopsys,float note,String date_sortie,String image){
+    public Film(int id,String titre,String synopsys,float note,String date_sortie,String image,int tosee,int seen){
         this.id = id;
         this.titre = titre;
         this.synopsys = synopsys;
         this.note = note;
         this.date_sortie = date_sortie;
         this.image = image;
-
+        this.tosee=tosee;
+        this.seen=seen;
         }
+
+    public Film() {
+
+    }
+
 
     public int getId() {
         return id;
@@ -72,4 +80,21 @@ public class Film{
     public void setImage(String image) {
         this.image = image;
     }
+
+    public int getTosee() {
+        return tosee;
+    }
+
+    public void setTosee(int tosee) {
+        this.tosee = tosee;
+    }
+
+    public int getSeen() {
+        return seen;
+    }
+
+    public void setSeen(int seen) {
+        this.seen = seen;
+    }
+
 }

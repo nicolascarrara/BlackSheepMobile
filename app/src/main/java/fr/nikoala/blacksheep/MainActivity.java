@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.app.SearchManager;
+import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onQueryTextSubmit(String query) {
                 load_search(query);
-                if (query==""){
+                if (TextUtils.isEmpty(query)){
                     page=1;
                     search=false;
                     data_list.clear();
@@ -186,7 +187,10 @@ public class MainActivity extends AppCompatActivity
                     for (int i = 0; i<array.length(); i++){
 
                         JSONObject object = array.getJSONObject(i);
-                        MyData data = new MyData(object.getInt("id"),object.getString("title"),object.getString("overview"),object.getLong("vote_average"),object.getString("release_date"),object.getString("backdrop_path"));
+                        MyData data = new MyData(object.getInt("id"),object.getString("title"),object.getString("overview"),object.getLong("vote_average"),object.getString("release_date"),object.getString("backdrop_path"),0,0);
+                        if (TextUtils.isEmpty(data.getSynopsys())){
+                            data.setSynopsys("Pas de description disponible");
+                        }
                         data_list.add(data);
                     }
 
@@ -228,7 +232,7 @@ public class MainActivity extends AppCompatActivity
                         for (int i = 0; i<array.length(); i++){
 
                             JSONObject object = array.getJSONObject(i);
-                            MyData data = new MyData(object.getInt("id"),object.getString("title"),object.getString("overview"),object.getLong("vote_average"),object.getString("release_date"),object.getString("backdrop_path"));
+                            MyData data = new MyData(object.getInt("id"),object.getString("title"),object.getString("overview"),object.getLong("vote_average"),object.getString("release_date"),object.getString("backdrop_path"),0,0);
 
                             data_list.add(data);
                         }
