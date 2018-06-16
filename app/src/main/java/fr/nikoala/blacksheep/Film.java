@@ -16,8 +16,9 @@ public class Film{
     private String image;
     private int tosee;
     private int seen;
+    private String trailer;
 
-    public Film(int id,String titre,String synopsys,float note,String date_sortie,String image,int tosee,int seen){
+    public Film(int id,String titre,String synopsys,float note,String date_sortie,String image,int tosee,int seen,String trailer){
         this.id = id;
         this.titre = titre;
         this.synopsys = synopsys;
@@ -26,6 +27,7 @@ public class Film{
         this.image = image;
         this.tosee=tosee;
         this.seen=seen;
+        this.trailer=trailer;
         }
 
     public Film() {
@@ -97,4 +99,11 @@ public class Film{
         this.seen = seen;
     }
 
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
+    }
 }

@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity
     private CustomAdapter adapter;
     private List<MyData> data_list;
     private int page=1;
+    private static final String TAG = "MainActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,7 +189,7 @@ public class MainActivity extends AppCompatActivity
                     for (int i = 0; i<array.length(); i++){
 
                         JSONObject object = array.getJSONObject(i);
-                        MyData data = new MyData(object.getInt("id"),object.getString("title"),object.getString("overview"),object.getLong("vote_average"),object.getString("release_date"),object.getString("backdrop_path"),0,0);
+                        MyData data = new MyData(object.getInt("id"),object.getString("title"),object.getString("overview"),object.getLong("vote_average"),object.getString("release_date"),object.getString("backdrop_path"),0,0,"");
                         if (TextUtils.isEmpty(data.getSynopsys())){
                             data.setSynopsys("Pas de description disponible");
                         }
@@ -232,7 +234,7 @@ public class MainActivity extends AppCompatActivity
                         for (int i = 0; i<array.length(); i++){
 
                             JSONObject object = array.getJSONObject(i);
-                            MyData data = new MyData(object.getInt("id"),object.getString("title"),object.getString("overview"),object.getLong("vote_average"),object.getString("release_date"),object.getString("backdrop_path"),0,0);
+                            MyData data = new MyData(object.getInt("id"),object.getString("title"),object.getString("overview"),object.getLong("vote_average"),object.getString("release_date"),object.getString("backdrop_path"),0,0,"");
 
                             data_list.add(data);
                         }

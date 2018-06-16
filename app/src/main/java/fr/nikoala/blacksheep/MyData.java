@@ -15,8 +15,9 @@ public class MyData extends Film implements Serializable {
     private String image;
     private int tosee;
     private int seen;
+    private String trailer;
 
-    public MyData(int id, String titre, String synopsys, float note, String date_sortie, String image, int tosee, int seen) {
+    public MyData(int id, String titre, String synopsys, float note, String date_sortie, String image, int tosee, int seen,String trailer) {
         super();
         this.id = id;
         this.titre = titre;
@@ -26,6 +27,7 @@ public class MyData extends Film implements Serializable {
         this.image = image;
         this.tosee = tosee;
         this.seen = seen;
+        this.trailer=trailer;
     }
 
     public int getId() {
@@ -91,5 +93,15 @@ public class MyData extends Film implements Serializable {
 
     public void setSeen(int seen) {
         this.seen = seen;
+    }
+
+    @Override
+    public String getTrailer() {
+        return trailer;
+    }
+
+    @Override
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
     }
 }

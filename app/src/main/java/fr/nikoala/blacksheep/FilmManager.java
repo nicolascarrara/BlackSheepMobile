@@ -19,6 +19,7 @@ public class FilmManager {
     public static final String KEY_IMAGE_FILM="image_film";
     public static final String KEY_TOSEE_FILM="tosee";
     public static final String KEY_SEEN_FILM="seen";
+    public static final String KEY_TRAILER_FILM="trailer";
     public static final String CREATE_TABLE_FILM = "CREATE TABLE "+TABLE_NAME+
             " (" +
             " "+KEY_ID_FILM+" INTEGER primary key," +
@@ -28,7 +29,8 @@ public class FilmManager {
             " "+KEY_DATE_FILM+" TEXT," +
             " "+KEY_IMAGE_FILM+" TEXT," +
             " "+KEY_TOSEE_FILM+" INTEGER," +
-            " "+KEY_SEEN_FILM+" INTEGER"+
+            " "+KEY_SEEN_FILM+" INTEGER,"+
+            " "+KEY_TRAILER_FILM+" TEXT"+
             ");";
     private MySQLite maBaseSQLite;
     private SQLiteDatabase db;
@@ -57,6 +59,7 @@ public class FilmManager {
         values.put(KEY_IMAGE_FILM,film.getImage());
         values.put(KEY_TOSEE_FILM,film.getTosee());
         values.put(KEY_SEEN_FILM,film.getSeen());
+        values.put(KEY_TRAILER_FILM,film.getTrailer());
         return db.insert(TABLE_NAME,null,values);
     }
     public int modFilm(Film film) {
@@ -69,6 +72,7 @@ public class FilmManager {
         values.put(KEY_IMAGE_FILM,film.getImage());
         values.put(KEY_TOSEE_FILM,film.getTosee());
         values.put(KEY_SEEN_FILM,film.getSeen());
+        values.put(KEY_TRAILER_FILM,film.getTrailer());
         String where = KEY_ID_FILM+" = ?";
         String[] whereArgs = {film.getId()+""};
 
@@ -84,7 +88,7 @@ public class FilmManager {
     public Film getFilm(int id) {
         // Retourne le film dont l'id est passé en paramètre
 
-        Film a=new Film(0,"","",0,"","",0,0);
+        Film a=new Film(0,"","",0,"","",0,0,"");
 
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_FILM+"="+id, null);
         if (c.moveToFirst()) {
@@ -96,6 +100,7 @@ public class FilmManager {
             a.setImage(c.getString(c.getColumnIndex(KEY_IMAGE_FILM)));
             a.setTosee(c.getInt(c.getColumnIndex(KEY_TOSEE_FILM)));
             a.setSeen(c.getInt(c.getColumnIndex(KEY_SEEN_FILM)));
+            a.setTrailer(c.getString(c.getColumnIndex(KEY_TRAILER_FILM)));
             c.close();
         }
 
@@ -104,7 +109,7 @@ public class FilmManager {
 
     public Boolean Checkfilm(int id){
 
-        Film a=new Film(0,"","",0,"","",0,0);
+        Film a=new Film(0,"","",0,"","",0,0,"");
 
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_FILM+"="+id, null);
 
