@@ -121,6 +121,10 @@ public class FilmManager {
 
     }
 
+    public Cursor getLiked(){
+        return db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_SEEN_FILM+"=1",null);
+    }
+
     public Cursor getFilms() {
         // sélection de tous les enregistrements de la table
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);

@@ -1,6 +1,7 @@
 package fr.nikoala.blacksheep;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -125,14 +126,12 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        FilmManager m = new FilmManager(this); // gestionnaire de la table "animal"
-        m.open(); // ouverture de la table en lecture/écriture
 
             // insertion. L'id sera attribué automatiquement par incrément
                   //  m.addFilm(new Film(1,"maya","test",4,"12/08/1992","test"));
 
 
-            // Listing des enregistrements de la table
+            /* Listing des enregistrements de la table
                     Cursor c = m.getFilms();
                     if (c.moveToFirst())
                     {
@@ -145,19 +144,15 @@ public class MainActivity extends AppCompatActivity
                         while (c.moveToNext());
                     }
                     c.close(); // fermeture du curseur
-
-            // fermeture du gestionnaire
-        final Film f = m.getFilm(1);
-        final String test=f.getTitre();
-        m.close();
+*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Snackbar.make(view, "test : " + f.getTitre() , Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "test : " + f.getTitre() , Snackbar.LENGTH_LONG)
+                     //   .setAction("Action", null).show();
             }
         });
 
@@ -304,11 +299,16 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_liked) {
+            Toast.makeText(getApplicationContext(),"TEst",Toast.LENGTH_SHORT).show();
+            Intent intent;
+            intent = new Intent(getApplicationContext() , LikedActivity.class);
+            getApplicationContext().startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+            // Handle the camera action
+        } else if (id == R.id.nav_tosee) {
+
+        } else if (id == R.id.nav_discover) {
 
         } else if (id == R.id.nav_manage) {
 

@@ -1,5 +1,6 @@
 package fr.nikoala.blacksheep;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Movie;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,9 +40,9 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
     private YouTubePlayerFragment playerFragment;
     private YouTubePlayer mPlayer;
     private String YouTubeKey = "AIzaSyBeSM1ONcRxgZMI58x550DUBNXu7jSMtIg";
-    private static String VIDEO_ID = "YOUR VIDEO ID";
+    private static String VIDEO_ID = "";
     private ImageView image;
-    private TextView note,date,synopsys,titre;
+    private TextView date,synopsys,titre;
     private static final String TAG = "Movidetail";
 
 
@@ -110,12 +112,10 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
         image = findViewById(R.id.poster);
         titre = findViewById(R.id.titre);
         date = findViewById(R.id.date);
-        note = findViewById(R.id.note);
+        RatingBar rating = (RatingBar) findViewById(R.id.ratingBar);
         synopsys = findViewById(R.id.synopsys);
-        tosee.setText("Je veux le voir !");
-        seen.setText("Ajouter aux coups de coeur ");
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.hide(getFragmentManager().findFragmentById(R.id.youtube_player_fragment));
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.hide(getFragmentManager().findFragmentById(R.id.youtube_player_fragment));
 
          tosee.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,11 +123,13 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
                 if(details.getTosee()==1){
                     details.setTosee(0);
                     tosee.setText("Je veux le voir !");
+                    
 
                 }else{
                     details.setTosee(1);
                     tosee.setText("Je l'ai déjà vu !");
                 }
+                Log.d(TAG, "onClick: Modification tosee");
                 m.modFilm(details);
             }
         });
@@ -143,27 +145,38 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
                     details.setSeen(1);
                     seen.setText("Dans vos coups de coeur !");
                 }
+                Log.d(TAG, "onClick: "+details);
                 m.modFilm(details);
             }
         });
+
+
         if(m.Checkfilm(details.getId())){
             Film f = m.getFilm(details.getId());
+            details.setSeen(f.getSeen());
+            details.setTosee(f.getTosee());
             if (f.getTosee()==1){
+                tosee.setText("Je l'ai déjà vu !");
+            }else {
                 tosee.setText("Je veux le voir !");
             }
             if (f.getSeen()==1){
                 seen.setText("Dans vos coups de coeur !");
+            }else{
+                seen.setText("Ajouter aux coups de coeur ");
             }
         }else{
             m.addFilm(details);
+            tosee.setText("Je veux le voir !");
+            seen.setText("Ajouter aux coups de coeur ");
         }
 
         if (details != null){
-            Glide.with(this).load(details.getImage()).into(image);
+            Glide.with(this).load("https://image.tmdb.org/t/p/w300"+details.getImage()).into(image);
             titre.setText(details.getTitre());
             date.setText(details.getDate_sortie());
-            note.setText(Float.toString(details.getNote()));
             synopsys.setText(details.getSynopsys());
+            rating.setRating((details.getNote())/2);
         }
     }
 

@@ -41,7 +41,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         holder.synopsys.setText(my_data.get(position).getTitre());
-        Glide.with(context).load(my_data.get(position).getImage()).into(holder.image);
+        Glide.with(context).load("https://image.tmdb.org/t/p/w300"+my_data.get(position).getImage()).into(holder.image);
     }
 
     @Override

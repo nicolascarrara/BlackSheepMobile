@@ -72,7 +72,7 @@ public class MyData extends Film implements Serializable {
 
     public String getImage() {
         String img = "https://image.tmdb.org/t/p/w300" + image;
-        return img;
+        return image;
     }
 
     public void setImage(String image) {
