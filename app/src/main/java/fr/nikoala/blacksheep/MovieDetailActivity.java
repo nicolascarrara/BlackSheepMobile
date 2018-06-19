@@ -124,11 +124,11 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
             public void onClick(View view) {
                 if(details.getTosee()==1){
                     details.setTosee(0);
-                    tosee.setImageResource(R.drawable.ic_notsee);
+                    tosee.setImageResource(R.drawable.ic_seen);
                     Snackbar.make(view, "Retiré des films vus" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }else{
                     details.setTosee(1);
-                    tosee.setImageResource(R.drawable.ic_seen);
+                    tosee.setImageResource(R.drawable.ic_notsee);
                     Snackbar.make(view, "Ajouté aux films vus" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
                 }
@@ -193,7 +193,7 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
         if (!b) {
 
             //player.cueVideo("9rLZYyMbJic");
-            mPlayer.cueVideo(VIDEO_ID);
+            mPlayer.loadVideo(VIDEO_ID);
         }
         else
         {
