@@ -8,6 +8,8 @@ import android.os.AsyncTask;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,8 +57,8 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
         setContentView(R.layout.activity_movie_detail);
         final LinearLayout layoutyt=(LinearLayout)this.findViewById(R.id.layoutyoutube);
         layoutyt.setVisibility(LinearLayout.GONE);
-        final Button seen = findViewById(R.id.buttonseen);
-        final Button tosee =findViewById(R.id.buttontosee);
+        final FloatingActionButton seen = findViewById(R.id.buttonseen);
+        final FloatingActionButton tosee =findViewById(R.id.buttontosee);
         final FilmManager m = new FilmManager(this); //
         m.open();
         playerFragment =(YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_player_fragment);
@@ -122,14 +124,14 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
             public void onClick(View view) {
                 if(details.getTosee()==1){
                     details.setTosee(0);
-                    tosee.setText("Je veux le voir !");
-                    
-
+                    tosee.setImageResource(R.drawable.ic_notsee);
+                    Snackbar.make(view, "Retiré des films vus" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }else{
                     details.setTosee(1);
-                    tosee.setText("Je l'ai déjà vu !");
+                    tosee.setImageResource(R.drawable.ic_seen);
+                    Snackbar.make(view, "Ajouté aux films vus" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
                 }
-                Log.d(TAG, "onClick: Modification tosee");
                 m.modFilm(details);
             }
         });
@@ -139,13 +141,14 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
             public void onClick(View view) {
                 if(details.getSeen()==1){
                     details.setSeen(0);
-                    seen.setText("Ajouter aux coups de coeur ");
-
+                    seen.setImageResource(R.drawable.ic_notliked);
+                    Snackbar.make(view, "Retiré des coups de coeur" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }else{
                     details.setSeen(1);
-                    seen.setText("Dans vos coups de coeur !");
+                    seen.setImageResource(R.drawable.ic_liked);
+                    Snackbar.make(view, "Ajouté aux coups de coeur" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
                 }
-                Log.d(TAG, "onClick: "+details);
                 m.modFilm(details);
             }
         });
@@ -156,19 +159,19 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
             details.setSeen(f.getSeen());
             details.setTosee(f.getTosee());
             if (f.getTosee()==1){
-                tosee.setText("Je l'ai déjà vu !");
+                tosee.setImageResource(R.drawable.ic_notsee);
             }else {
-                tosee.setText("Je veux le voir !");
+                tosee.setImageResource(R.drawable.ic_seen);
             }
             if (f.getSeen()==1){
-                seen.setText("Dans vos coups de coeur !");
+                seen.setImageResource(R.drawable.ic_liked);
             }else{
-                seen.setText("Ajouter aux coups de coeur ");
+               seen.setImageResource(R.drawable.ic_notliked);
             }
         }else{
             m.addFilm(details);
-            tosee.setText("Je veux le voir !");
-            seen.setText("Ajouter aux coups de coeur ");
+            tosee.setImageResource(R.drawable.ic_seen);
+            seen.setImageResource(R.drawable.ic_notliked);
         }
 
         if (details != null){

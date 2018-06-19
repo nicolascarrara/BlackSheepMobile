@@ -26,7 +26,8 @@
             android:theme="@style/AppTheme.NoActionBar">
             >
         </activity>
-        <activity android:name=".LikedActivity"></activity>
+        <activity android:name=".LikedActivity" />
+        <activity android:name=".ToSeeActivity"></activity>
     </application>
 
 </manifest>

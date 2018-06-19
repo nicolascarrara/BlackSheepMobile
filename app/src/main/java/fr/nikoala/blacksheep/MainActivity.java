@@ -146,15 +146,10 @@ public class MainActivity extends AppCompatActivity
                     c.close(); // fermeture du curseur
 */
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                //Snackbar.make(view, "test : " + f.getTitre() , Snackbar.LENGTH_LONG)
-                     //   .setAction("Action", null).show();
-            }
-        });
+
+                //Snackbar.make(view, "test : " + f.getTitre() , Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -280,15 +275,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-       // if (id == R.id.action_settings) {
-         //   return true;
-       // }
+        int id = item.getItemId();
 
         return super.onOptionsItemSelected(item);
     }
@@ -296,28 +284,21 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_liked) {
-            Toast.makeText(getApplicationContext(),"TEst",Toast.LENGTH_SHORT).show();
             Intent intent;
             intent = new Intent(getApplicationContext() , LikedActivity.class);
             getApplicationContext().startActivity(intent);
-
-            // Handle the camera action
         } else if (id == R.id.nav_tosee) {
-
+            Intent intent;
+            intent = new Intent(getApplicationContext() , ToSeeActivity.class);
+            getApplicationContext().startActivity(intent);
         } else if (id == R.id.nav_discover) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent intent;
+            intent = new Intent(getApplicationContext() , MainActivity.class);
+            getApplicationContext().startActivity(intent);
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -36,9 +36,21 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/poster"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="10dp"
-                    android:text="TextView"
+                    android:layout_marginBottom="30dp"
+                    android:text="Titre"
                     android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_above="@+id/date"
+                    android:text="Date de sortie :"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -49,9 +61,8 @@
                     android:layout_below="@+id/titre"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:text="TextView" />
+
+                    android:text="Date" />
 
 
 
@@ -82,7 +93,15 @@
                     android:layout_below="@+id/synopsys"
                     android:orientation="vertical"
                     tools:ignore="InvalidId">
-
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="25dp"
+                        android:textStyle="bold"
+                        android:text="Bande Annonce" />
                     <fragment
 
                         android:id="@+id/youtube_player_fragment"
@@ -92,8 +111,10 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignStart="@+id/synopsys"
                         android:layout_below="@+id/synopsys"
-                        android:layout_marginBottom="120dp"
+                        android:layout_marginBottom="100dp"
                         android:layout_marginTop="21dp" />
+
+
                 </LinearLayout>
 
 
@@ -112,21 +133,31 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
 
-        <Button
+
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/buttonseen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:text="Button" />
+            android:layout_marginBottom="27dp"
+            android:layout_marginStart="15dp"
+            android:clickable="true"
+            android:scaleType="center"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:srcCompat="@drawable/ic_notliked" />
 
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/buttontosee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:text="Button" />
+            android:layout_marginEnd="15dp"
+            android:clickable="true"
+            android:scaleType="center"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:srcCompat="@drawable/ic_seen" />
 
 
     </RelativeLayout>
