@@ -64,8 +64,9 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
         playerFragment =(YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_player_fragment);
 
         playerFragment.initialize(YouTubeKey, this);
-
+        
         final MyData details = (MyData) getIntent().getExtras().getSerializable("MOVIE_DETAILS");
+         //Récupération de la bande annonce
         AsyncTask<Integer,Void,Void> task=new AsyncTask<Integer, Void, Void>(){
             @Override
             protected Void doInBackground(Integer... integers) {
@@ -119,6 +120,7 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.hide(getFragmentManager().findFragmentById(R.id.youtube_player_fragment));
 
+        //Boutons Permettant l'ajout ou la suppresion des film dans les listes
          tosee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,7 +155,7 @@ public class MovieDetailActivity extends AppCompatActivity implements YouTubePla
             }
         });
 
-
+        // Vérification de l'existence du film en base de données locale, s'il n'existe pas il est ajouté
         if(m.Checkfilm(details.getId())){
             Film f = m.getFilm(details.getId());
             details.setSeen(f.getSeen());
