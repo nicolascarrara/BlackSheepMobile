@@ -108,7 +108,7 @@ public class FilmManager {
     }
 
     public Boolean Checkfilm(int id){
-
+        //Verification de l'éxistence d'un film dont l'id est passé en paramètre
         Film a=new Film(0,"","",0,"","",0,0,"");
 
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_FILM+"="+id, null);
@@ -122,10 +122,12 @@ public class FilmManager {
     }
 
     public Cursor getLiked(){
+        //récuperation des films coups de coeur
         return db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_SEEN_FILM+"=1",null);
     }
 
     public Cursor getSee(){
+        //récuperation des films Vus
         return db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_TOSEE_FILM+"=1",null);
     }
     public Cursor getFilms() {
