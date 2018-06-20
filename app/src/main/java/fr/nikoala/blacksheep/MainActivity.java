@@ -113,7 +113,8 @@ public class MainActivity extends AppCompatActivity
                 return false;
             }
         });
-
+               
+               //ajout d'un listener pour controler le scrolling et récuperer de nouveau films
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -126,31 +127,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-            // insertion. L'id sera attribué automatiquement par incrément
-                  //  m.addFilm(new Film(1,"maya","test",4,"12/08/1992","test"));
-
-
-            /* Listing des enregistrements de la table
-                    Cursor c = m.getFilms();
-                    if (c.moveToFirst())
-                    {
-                        do {
-                            Log.d("test",
-                                    c.getInt(c.getColumnIndex(FilmManager.KEY_ID_FILM)) + "," +
-                                            c.getString(c.getColumnIndex(FilmManager.KEY_TITRE_FILM))
-                            );
-                        }
-                        while (c.moveToNext());
-                    }
-                    c.close(); // fermeture du curseur
-*/
-
-
-
-                //Snackbar.make(view, "test : " + f.getTitre() , Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -161,6 +137,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+               //récupération des films a découvrir
     private void load_discover(int id) {
 
         AsyncTask<Integer,Void,Void> task = new AsyncTask<Integer, Void, Void>() {
@@ -204,6 +181,8 @@ public class MainActivity extends AppCompatActivity
 
         task.execute(id);
     }
+    
+    // envoi de la requete de recherche d'un film
     private void load_search(final String recherche){
 
 
